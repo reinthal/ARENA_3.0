@@ -2,7 +2,18 @@
 inputs:
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
-
+  nixpkgs-python:
+    url: github:cachix/nixpkgs-python
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+allowUnfree: true
+nixpkgs:
+  config:
+    allowUnfree: true
+    x86_64-linux:
+      cudaSupport: true
+      cudaCapabilities: ["7.5", "8.6", "8.9"]
 # If you're using non-OSS software, you can set allowUnfree to true.
 # allowUnfree: true
 
@@ -10,6 +21,5 @@ inputs:
 # permittedInsecurePackages:
 #  - "openssl-1.1.1w"
 
-# If you have more than one devenv you can merge them
 #imports:
 # - ./backend
