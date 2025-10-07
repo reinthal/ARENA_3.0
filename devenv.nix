@@ -15,8 +15,9 @@
   languages.python = {
     enable = true;
     package = pkgs.python311;
+    uv.enable = true;
+    uv.sync.enable = true;
     venv.enable = true;
-    venv.requirements = ./requirements.txt;
   };
 
   # https://devenv.sh/processes/
