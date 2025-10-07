@@ -42,3 +42,12 @@ logs/
 __pycache__/
 infrastructure/master_files/js
 demos
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
