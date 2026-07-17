@@ -1,3 +1,114 @@
+[project]
+name = "arena-3-0"
+version = "0.1.0"
+description = "ARENA 3.0 course exercises and solutions"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+    # PyTorch (CUDA 11.8, see [tool.uv.index] below)
+    "torch",
+    "torchvision",
+    "torchaudio",
+
+    # ML & DL
+    "huggingface_hub",
+    "torchtext",
+    "torchinfo",
+    "diffusers",
+    "wandb",
+    "accelerate",
+    "ftfy",
+    "safetensors",
+    "openai>=1.56.2",
+    "sentence-transformers",
+    "peft",
+    "bitsandbytes",
+
+    # Data manipulation and analysis
+    "einops",
+    "eindex-callum",
+    "pandas",
+    "numpy-stl",
+    "scikit-learn",
+    "hdbscan",
+    "umap-learn",
+
+    # Utilities
+    "requests",
+    "pytest",
+    "tqdm",
+    "ipykernel",
+    "notebook",
+    "ipywidgets==7.7.1",
+    "jupyterlab-widgets==1.1.1",
+    "jupyter",
+    "pre-commit",
+    "gdown",
+    "portalocker>=2.0.0",
+    "typeguard",
+    "jaxtyping",
+    "tiktoken",
+    "frozendict",
+    "tabulate",
+    "opencv-python",
+    "nbformat",
+    "docformatter",
+    "pyyaml",
+
+    # Visualization
+    "matplotlib",
+    "plotly",
+    "streamlit",
+    "streamlit-antd-components==0.2.5",
+    "streamlit-image-select",
+    "streamlit-on-Hover-tabs",
+    "nnsight>=0.3.5",
+    "imageio-ffmpeg",
+    "mediapy",
+
+    # Chapter 1 (interp)
+    "transformer_lens>=2.16.1,<3.0.0",
+    "transformers>=4.51,<5",
+    "sae-lens>=6.37.4,<7.0.0",
+    "sae-vis==0.3.7",
+    "circuitsvis",
+    "neel-plotly",
+
+    # Chapter 2 (RL)
+    "pygame",
+    "gymnasium[atari, accept-rom-license, other, mujoco-py]==0.29.0",
+    "mujoco",
+    # brax only declares jax>=0.4.6 (no upper bound); pin jax so an unpinned install
+    # doesn't grab a newer jax whose removed device_put_replicated breaks brax.
+    "jax[cuda12]==0.10.1",
+    "brax==0.14.2",
+    "envpool==1.2.5",
+
+    # Chapter 3 (evals)
+    "inspect_ai",
+    "wikipedia",
+    "python-dotenv",
+    "anthropic>=0.42.0",
+    "instructor",
+]
+
+[tool.uv]
+# git CircuitsVis pins numpy<2, but jax 0.10.1 needs numpy>=2. pip let this
+# slide (last-write-wins); uv is strict, so force numpy>=2 across the graph.
+override-dependencies = ["numpy>=2.0"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu118" }
+torchvision = { index = "pytorch-cu118" }
+torchaudio = { index = "pytorch-cu118" }
+circuitsvis = { git = "https://github.com/callummcdougall/CircuitsVis.git", subdirectory = "python" }
+neel-plotly = { git = "https://github.com/neelnanda-io/neel-plotly" }
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
 [tool.ruff]
 line-length = 100
 
